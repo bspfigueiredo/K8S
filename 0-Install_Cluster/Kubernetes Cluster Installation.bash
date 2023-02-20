@@ -193,10 +193,12 @@ MASTER
 #0 - Creating a Cluster
 #Create our kubernetes cluster, specify a pod network range matching that in calico.yaml! 
 #Only on the Control Plane Node, download the yaml files for the pod network.
+
+# ESTE DEIXOU DE FUNCIONAR USAR O MEU DE BAIXO
 wget https://docs.projectcalico.org/manifests/calico.yaml
 
-# Link do RAW do GITAMOSHUB
-wget https://raw.githubusercontent.com/bspfigueiredo/Calico/main/calico.yaml
+# Link do RAW do GITAMOS HUB
+wget https://raw.githubusercontent.com/bspfigueiredo/K8S/main/3-Calico/calico.yaml
 
 
 #Look inside calico.yaml and find the setting for Pod Network IP address range CALICO_IPV4POOL_CIDR, 
