@@ -57,6 +57,7 @@ nano /etc/fstab
     		renderer: networkd
     		ethernets:
         		eth0: #o campo eth0 diz respeito ao interface de rede, este pode ser diferente nos vários serviços hypervisor
+					dhcp4: false
             		addresses:
                 		- 192.168.1.23/21
             		nameservers:
