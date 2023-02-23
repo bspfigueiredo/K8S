@@ -9,6 +9,10 @@ MASTER AND NODE COMMANDS
 sudo su
 
 apt-get update
+sudo apt install nano
+
+apt-get update
+sudo apt install vim
 
 # Verificar SWAP
 	swapon --show
