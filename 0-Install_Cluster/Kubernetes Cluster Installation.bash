@@ -58,7 +58,7 @@ nano /etc/fstab
     		ethernets:
         		eth0: #o campo eth0 diz respeito ao interface de rede, este pode ser diferente nos vários serviços hypervisor
             		addresses:
-                		- 192.168.1.15/21
+                		- 192.168.1.23/21
             		nameservers:
                 		addresses: [192.168.1.211, 192.168.1.210]
             		routes:
@@ -68,7 +68,11 @@ nano /etc/fstab
 		#to commit
 		sudo netplan apply
 
-
+		# colcoar tab nos /etc/hosts
+		#colocar os vizinhos
+			192.168.1.240 controlplane
+			192.168.1.241 node1
+			192.168.1.242 node2
 
 
 
