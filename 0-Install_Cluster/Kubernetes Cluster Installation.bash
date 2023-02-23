@@ -59,7 +59,7 @@ nano /etc/fstab
         		eth0: #o campo eth0 diz respeito ao interface de rede, este pode ser diferente nos vários serviços hypervisor
 					dhcp4: false
             		addresses:
-                		- 192.168.1.23/21
+                		- 192.168.1.240/24
             		nameservers:
                 		addresses: [192.168.1.211, 192.168.1.210]
             		routes:
@@ -69,7 +69,10 @@ nano /etc/fstab
 		#to commit
 		sudo netplan apply
 
-		# colcoar tab nos /etc/hosts
+		# colcoar tab nos nano /etc/hosts
+
+		nano /etc/hosts
+
 		#colocar os vizinhos
 			192.168.1.240 controlplane
 			192.168.1.241 node1
