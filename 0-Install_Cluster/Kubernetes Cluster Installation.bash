@@ -430,6 +430,19 @@ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.pas
 Ijnuju5NYrtfdu1T
 
 
+# configurar o argo
+
+# ligar a um repositorio GIFHUB
+https://github.com/bspfigueiredo/K8S.git
+
+# em vez de username e pass meter o token gerado nunca expira com acesso a tudo
+VIA: HTTPS
+Type: GIT
+Project: default
+repositorio url: https://github.com/bspfigueiredo/K8S.git
+username: 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
+password: meter a password
+
 #colocar o prometheus e o grafana e os outros com ip para aceder a eles
 # alterar os comandos conforme as necessidades estes sao exemplos do argo
 kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
