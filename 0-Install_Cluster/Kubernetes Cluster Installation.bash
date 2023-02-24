@@ -9,6 +9,9 @@ MASTER AND NODE COMMANDS
 sudo su
 
 apt-get update
+sudo apt install net-tools
+
+apt-get update
 sudo apt install nano
 
 apt-get update
@@ -52,6 +55,20 @@ nano /etc/fstab
     		dns-search b-simple.local
     		dns-namesevers 192.168.1.211, 192.168.1.210
 
+
+
+	# colcoar tab nos nano /etc/hosts
+
+		nano /etc/hosts
+
+		#colocar os vizinhos
+			192.168.1.240 controlplane
+			192.168.1.241 node1
+			192.168.1.242 node2
+
+
+
+
 	#(Config por YAML)Atribuir static IP
 	nano /etc/netplan/01-netcfg.yaml
 
@@ -73,14 +90,7 @@ nano /etc/fstab
 		#to commit
 		sudo netplan apply
 
-		# colcoar tab nos nano /etc/hosts
-
-		nano /etc/hosts
-
-		#colocar os vizinhos
-			192.168.1.240 controlplane
-			192.168.1.241 node1
-			192.168.1.242 node2
+		
 
 
 
@@ -225,20 +235,29 @@ vi calico.yaml
 sudo kubeadm init
 
 # SE DER  erro temos de fazr isto
-apt remove --purge kubelet
-apt install -y kubeadm kubelet=1.25.5-00
+		apt remove --purge kubelet
 
-wget https://github.com/containerd/containerd/releases/download/v1.6.12/containerd-1.6.12-linux-amd64.tar.gz
-tar xvf containerd-1.6.12-linux-amd64.tar.gz
-systemctl stop containerd
-cd bin
-cp * /usr/bin/
-systemctl start containerd
+		apt install -y kubeadm kubelet=1.25.5-00
+
+		wget https://github.com/containerd/containerd/releases/download/v1.6.12/containerd-1.6.12-linux-amd64.tar.gz
+		tar xvf containerd-1.6.12-linux-amd64.tar.gz
+		systemctl stop containerd
+		cd bin
+		cp * /usr/bin/
+		systemctl start containerd
 
 
-# Voltar a tentar
+		# Voltar a tentar
 
-sudo kubeadm init
+		sudo kubeadm init
+
+
+# SE NAO DER ERRO CONTINUAR!
+# ele vai dar a key para adicionar os nodes 
+# guardar num TXT para mais tarde usar
+# confinuar para a parte de baixo
+
+
 
 #Before moving on review the output of the cluster creation process including the kubeadm init phases, 
 #the admin.conf setup and the node join command
@@ -275,11 +294,39 @@ kubectl get nodes
 #Caso a instalação seja na cloud(Azure/Google/etc...) é necessário alterar a configuração da IPPool para VXLANMODE - Always e IPIPMode - Never
 
 #Instalar o CLI do calico de preferência em /usr/local/bin/ (na PATH)
+
+cd /usr/local/bin/
 curl -L https://github.com/projectcalico/calico/releases/download/v3.24.0/calicoctl-linux-amd64 -o calicoctl
 chmod +x ./calicoctl
 
 #Obter o ficheiro -yaml com a configuração da IPPool. A opção --allow-version-mismatch é para usar quando a versão do cliente é diferente da versão do cluster do calico.
 calicoctl get ippool --allow-version-mismatch -o yaml
+
+# guardar o conteudo num txt para usar na linha seguinte
+# exemplo
+apiVersion: projectcalico.org/v3
+items:
+- apiVersion: projectcalico.org/v3
+  kind: IPPool
+  metadata:
+    creationTimestamp: "2023-02-24T10:39:29Z"
+    name: default-ipv4-ippool
+    resourceVersion: "1267"
+    uid: 7cd1d931-2be9-4e0b-8bea-d48f7ca80322
+  spec:
+    allowedUses:
+    - Workload
+    - Tunnel
+    blockSize: 26
+    cidr: 172.16.0.0/16
+    ipipMode: Always
+    natOutgoing: true
+    nodeSelector: all()
+    vxlanMode: Never
+kind: IPPoolList
+metadata:
+  resourceVersion: "1436"
+
 
 #Alterar o ficheiro com o resultado do yaml da linha anterior.
 nano pools.yaml
@@ -317,6 +364,11 @@ kubeadm token create --print-join-command
 NODES
 --------------------------------------------------------------------------------
 
+#IR AOS  NODES E EXECUTAR O COMANDO DEVOLVIDO PELO COMANDO ANTERIOR
+
+kubeadm join 192.168.1.240:6443 --token 3ehm19.cbki2coahrxuf7kn --discovery-token-ca-cert-hash sha256:11c318ff37db3f0f3caaecba74f85de889f993d9de6407cb369c352fc7679aa5
+
+
 Exemplo :
 sudo kubeadm join 10.164.0.19:6443 --token 6gzan7.3vfyo09owxbuf5hp --discovery-token-ca-cert-hash sha256:3e499390beeed383d173e2eab32272340057e4827e4f3cf10a87647decff397a
 
@@ -326,6 +378,12 @@ sudo kubeadm join 10.164.0.19:6443 --token 6gzan7.3vfyo09owxbuf5hp --discovery-t
 #mkdir -p $HOME/.kube
 #sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 #sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+# mudar o IP para o nosso ip do Master
+scp -r bsimple@192.168.1.240:/home/kmaster/.kube .
+
+# Não fizemos no nosso! caso seja preciso fazemos
+
 scp -r kmaster@10.164.0.19:/home/kmaster/.kube .
 
 
@@ -370,3 +428,10 @@ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.pas
 
 # >> password desencriptada, mudar no primeiro login
 Ijnuju5NYrtfdu1T
+
+
+#colocar o prometheus e o grafana e os outros com ip para aceder a eles
+# alterar os comandos conforme as necessidades estes sao exemplos do argo
+kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
+kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
+kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
