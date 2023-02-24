@@ -501,12 +501,7 @@ Elastic: >> https://helm.elastic.co
 
 
 # Instalação do site do Cardoso
-wget https://raw.githubusercontent.com/bspfigueiredo/K8S/main/9-APP_CARDOSO_K8S/appsettings.secrets.json
-wget https://raw.githubusercontent.com/bspfigueiredo/K8S/main/9-APP_CARDOSO_K8S/deployment-backend.yaml
-wget https://raw.githubusercontent.com/bspfigueiredo/K8S/main/9-APP_CARDOSO_K8S/deployment-frontend.yaml
-wget https://raw.githubusercontent.com/bspfigueiredo/K8S/main/9-APP_CARDOSO_K8S/ingress-deploy.yaml
-wget https://raw.githubusercontent.com/bspfigueiredo/K8S/main/9-APP_CARDOSO_K8S/secrets_install.txt
-
+pelo argo com os yaml no GIT
 
 
 
