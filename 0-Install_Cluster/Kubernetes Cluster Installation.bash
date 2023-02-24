@@ -463,8 +463,8 @@ kubectl create -f persistentvolume.yaml
 kubectl get pv
 
 
-kubectl apply -f https://raw.githubusercontent.com/bspfigueiredo/K8S/main/8-PersistentVolume/persistentvolumeclaim.yaml
-kubectl get pv
+kubectl apply -f https://raw.githubusercontent.com/bspfigueiredo/K8S/main/8-PersistentVolume/persistentvolumeclaimgrafana.yaml
+kubectl get pvc
 
 #instalar ingress nginx / grafana / .... pelo HELM
 
@@ -511,4 +511,3 @@ pelo argo com os yaml no GIT
 # alterar os comandos conforme as necessidades estes sao exemplos do argo
 kubectl patch svc grafana -n grafana -p '{"spec": {"type": "LoadBalancer"}}'
 kubectl patch svc rabbitmq -n rabbitmq -p '{"spec": {"type": "LoadBalancer"}}'
-kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
