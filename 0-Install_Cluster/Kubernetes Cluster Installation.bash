@@ -454,6 +454,62 @@ username: bspfigueiredo
 password: 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
 
 
+
+
+#Criar volume persistente
+#Criamos um Persistent Volume
+wget https://raw.githubusercontent.com/bspfigueiredo/K8S/main/8-PersistentVolume/persistentvolume.yaml
+kubectl create -f persistentvolume.yaml
+kubectl get pv
+
+
+
+#instalar ingress nginx / grafana / .... pelo HELM
+
+
+Instalação e configuração a partir do ArgoCD usando HELM:
+
+Repositorio GIT HUB: https://github.com/bspfigueiredo/K8S.git
+
+
+Instalado:
+
+Helm: >> https://charts.bitnami.com/bitnami
+
+>> Ingress Controller
+>> Redis
+>> Grafana
+>> Postgressql
+>> RabbitMQ
+
+
+Prometheus: >> https://prometheus-community.github.io/helm-charts
+
+OpenEBS: >> https://openebs.github.io/charts
+
+
+
+
+Ainda não instalado:
+
+Isitio: >> https://istio-release.storage.googleapis.com/charts
+
+Elastic: >> https://helm.elastic.co
+
+
+
+
+
+# Instalação do site do Cardoso
+wget https://raw.githubusercontent.com/bspfigueiredo/K8S/main/9-APP_CARDOSO_K8S/appsettings.secrets.json
+wget https://raw.githubusercontent.com/bspfigueiredo/K8S/main/9-APP_CARDOSO_K8S/deployment-backend.yaml
+wget https://raw.githubusercontent.com/bspfigueiredo/K8S/main/9-APP_CARDOSO_K8S/deployment-frontend.yaml
+wget https://raw.githubusercontent.com/bspfigueiredo/K8S/main/9-APP_CARDOSO_K8S/ingress-deploy.yaml
+wget https://raw.githubusercontent.com/bspfigueiredo/K8S/main/9-APP_CARDOSO_K8S/secrets_install.txt
+
+
+
+
 #colocar o prometheus e o grafana e os outros com ip para aceder a eles
 # alterar os comandos conforme as necessidades estes sao exemplos do argo
 kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
