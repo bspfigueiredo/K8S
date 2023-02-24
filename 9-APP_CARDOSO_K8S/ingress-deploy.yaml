@@ -1,0 +1,80 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingressdeploy
+  annotations:
+   nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: testk8s.b-simple.local
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: frontend
+            port:
+              number: 90
+      - pathType: Prefix
+        path: "/health/live"
+        backend:
+          service:
+            name: backend
+            port:
+              number: 80
+      - pathType: Prefix
+        path: "/apisample/GetId"
+        backend:
+          service:
+            name: backend
+            port:
+              number: 80
+      - pathType: Prefix
+        path: "/error"
+        backend:
+          service:
+            name: backend
+            port:
+              number: 80
+      - pathType: Prefix
+        path: "/apisample"
+        backend:
+          service:
+            name: backend
+            port:
+              number: 80
+      - pathType: Prefix
+        path: "/metrics"
+        backend:
+          service:
+            name: backend
+            port:
+              number: 80
+      - pathType: Prefix
+        path: "/prometheus"
+        backend:
+          service:
+            name: prometheus-kube-prometheus-prometheus
+            port:
+              number: 9090
+      - pathType: Prefix
+        path: "/grafana"
+        backend:
+          service:
+            name: prometheus-grafana
+            port:
+              number: 80
+      - pathType: Prefix
+        path: "/alertmanager"
+        backend:
+          service:
+            name: prometheus-kube-prometheus-alertmanager
+            port:
+              number: 9093
+  defaultBackend:
+    service:
+      name: frontend
+      port:
+        number: 90
