@@ -463,6 +463,8 @@ kubectl create -f persistentvolume.yaml
 kubectl get pv
 
 
+kubectl apply -f https://k8s.io/examples/pods/storage/pv-claim.yaml
+kubectl get pv
 
 #instalar ingress nginx / grafana / .... pelo HELM
 
