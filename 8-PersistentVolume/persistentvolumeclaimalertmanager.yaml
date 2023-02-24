@@ -5,7 +5,7 @@ metadata:
   labels:
     name: alertmanager
 spec:
-  storageClassName: manual
+  storageClassName: openebs-device
   accessModes:
     - ReadWriteOnce
   resources:
