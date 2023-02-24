@@ -435,13 +435,24 @@ Ijnuju5NYrtfdu1T
 # ligar a um repositorio GIFHUB
 https://github.com/bspfigueiredo/K8S.git
 
+
+#Ir buscar secret
+# settings na imagem do canto superior direito
+# Developer settings em baixo de todo à esquerda
+# depois Personal access tokens >> Tokens (classic)
+# generate new token
+# Generate new token (Beta)
+# atibuir nome e as permisoes todas
+# guardar o token
+
 # em vez de username e pass meter o token gerado nunca expira com acesso a tudo
 VIA: HTTPS
 Type: GIT
 Project: default
 repositorio url: https://github.com/bspfigueiredo/K8S.git
-username: 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
-password: meter a password
+username: bspfigueiredo
+password: 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
+
 
 #colocar o prometheus e o grafana e os outros com ip para aceder a eles
 # alterar os comandos conforme as necessidades estes sao exemplos do argo
