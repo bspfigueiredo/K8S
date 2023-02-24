@@ -5,7 +5,7 @@ metadata:
   labels:
     name: prometheus
 spec:
-  storageClassName: openebs-device
+  storageClassName: openebs-hostpath
   accessModes:
     - ReadWriteOnce
   resources:

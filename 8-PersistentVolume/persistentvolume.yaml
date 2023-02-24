@@ -3,7 +3,7 @@ kind: PersistentVolume
 metadata:
   name: persistent-volume
 spec:
-  storageClassName: manual
+  storageClassName: openebs-hostpath
   capacity:
     storage: 100Gi
   accessModes:
