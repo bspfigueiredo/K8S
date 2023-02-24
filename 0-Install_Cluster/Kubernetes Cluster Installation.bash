@@ -507,6 +507,6 @@ pelo argo com os yaml no GIT
 
 #colocar o prometheus e o grafana e os outros com ip para aceder a eles
 # alterar os comandos conforme as necessidades estes sao exemplos do argo
-kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
-kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
+kubectl patch svc grafana -n grafana -p '{"spec": {"type": "LoadBalancer"}}'
+kubectl patch svc rabbitmq -n rabbitmq -p '{"spec": {"type": "LoadBalancer"}}'
 kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
