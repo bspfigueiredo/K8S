@@ -3,7 +3,7 @@ kind: PersistentVolume
 metadata:
   name: postgresql
 spec:
-  storageClassName: data-postgresql-0
+  storageClassName: slow
   capacity:
     storage: 20Gi
   volumeMode: Filesystem
@@ -15,5 +15,5 @@ spec:
     - nfsvers=4.1
   nfs:
     server: 192.168.1.220
-    path: /VOLUMES/postgresql
+    path: "/VOLUMES/postgresql"
     readOnly: false
