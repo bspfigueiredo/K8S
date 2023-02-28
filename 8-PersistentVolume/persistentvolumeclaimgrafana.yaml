@@ -3,7 +3,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: pvgrafana
 spec:
-  storageClassName: valentinad
+  storageClassName: openebs-hostpath
   accessModes:
     - ReadWriteOnce
   resources:
