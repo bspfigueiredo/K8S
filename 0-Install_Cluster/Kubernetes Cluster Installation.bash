@@ -503,8 +503,8 @@ Elastic: >> https://helm.elastic.co
 
 
 # Instalação do site do Cardoso
-pelo argo com os yaml no GIT
-
+## pelo argo com os yaml no GIT
+## esta a dar erro a montar volume no backend
 
 
 #colocar o prometheus e o grafana e os outros com ip para aceder a eles
