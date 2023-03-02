@@ -27,7 +27,6 @@ spec:
           volumeMounts:
           - name: secrets
             mountPath: /app/secrets
-            #mountPath: /home/bsimple/API_Cardoso
             readOnly: true
       volumes:
         - name: secrets
