@@ -511,3 +511,7 @@ pelo argo com os yaml no GIT
 # alterar os comandos conforme as necessidades estes sao exemplos do argo
 kubectl patch svc grafana -n grafana -p '{"spec": {"type": "LoadBalancer"}}'
 kubectl patch svc rabbitmq -n rabbitmq -p '{"spec": {"type": "LoadBalancer"}}'
+
+##### estes comandos não podem ser feitos senao o argo estraga de novo
+
+## tem de ser configurado nos parametros de cada app no argocd!
