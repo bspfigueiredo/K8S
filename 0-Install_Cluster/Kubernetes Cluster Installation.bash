@@ -512,6 +512,10 @@ Elastic: >> https://helm.elastic.co
 kubectl patch svc grafana -n grafana -p '{"spec": {"type": "LoadBalancer"}}'
 kubectl patch svc rabbitmq -n rabbitmq -p '{"spec": {"type": "LoadBalancer"}}'
 
+kubectl patch svc grafana -n grafana -p '{"spec": {"type": "ClusterIP"}}'
+kubectl patch svc redis-master -n redis -p '{"spec": {"type": "ClusterIP"}}'
+kubectl patch svc grafana -n grafana -p '{"spec": {"type": "LoadBalancer"}}'
+
 ##### estes comandos não podem ser feitos senao o argo estraga de novo
 
 ## tem de ser configurado nos parametros de cada app no argocd!
