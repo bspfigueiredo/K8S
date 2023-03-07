@@ -519,3 +519,14 @@ kubectl patch svc grafana -n grafana -p '{"spec": {"type": "LoadBalancer"}}'
 ##### estes comandos não podem ser feitos senao o argo estraga de novo
 
 ## tem de ser configurado nos parametros de cada app no argocd!
+
+
+
+
+##
+## sacar pass do grafana
+
+kubectl get secret --namespace monitoring grafana-admin -n grafana -o yaml
+
+kubectl get secret --namespace monitoring rabbitmq -n rabbitmq -o yaml
+
