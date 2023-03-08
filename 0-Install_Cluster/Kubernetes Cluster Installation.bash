@@ -426,6 +426,10 @@ kubectl port-forward service/argocd-server 8080:80 -n argocd
 # Saber a apssword do argocd
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
 
+kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}"
+
+kubectl -n rabbitmq get secret rabbitmq -o jsonpath="{.data.password}" | base64 -d; echo
+
 # >> password desencriptada, mudar no primeiro login
 Ijnuju5NYrtfdu1T
 
