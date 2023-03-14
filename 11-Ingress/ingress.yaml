@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingrabbitmq
+  namespace: rabbitmq
+spec:
+  ingressClassName: haproxy
+  rules:
+  - host: testk8s.b-simple.local
+    http:
+      paths:
+      - pathType: Exact
+        path: "/rabbitmq"
+        backend:
+          service:
+            name: rabbitmq
+            port:
+              number: 15672
